@@ -12,7 +12,7 @@ class LoginPage {
     }
   
     open() {
-      browser.url('https://www.saucedemo.com/')
+      browser.url('/')
     }
   
     login(username, password) {
