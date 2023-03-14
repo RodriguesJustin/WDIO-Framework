@@ -12,7 +12,7 @@ class LoginPage {
     }
   
     open() {
-      browser.url('/')
+      browser.url()
     }
   
     login(username, password) {
