@@ -1,41 +1,54 @@
 class LoginPage {
     get usernameInput() {
-      return $('#username')
+      return $('input[name="UserName"]'); 
     }
   
     get passwordInput() {
-      return $('#password')
+      return $('input[name="Password"]');
     }
   
     get loginButton() {
-      return $('#login-button')
-    }
-  
-    open() {
-      browser.url()
-    }
-  
-    login(username, password) {
-      this.usernameInput.setValue(username)
-      this.passwordInput.setValue(password)
-      this.loginButton.click()
+      return $('#login');
     }
   
     get errorMessage() {
-      return $('#error')
+      return $('#loginstatus');
+    }
+    
+  
+    async  open() {
+    await  browser.url('/sampleapp');
+    }
+    submit() {
+        this.loginButton.click()
+    }
+
+    login(username, password) {
+      this.usernameInput.setValue(username);
+      this.passwordInput.setValue(password);
+      this.loginButton.click();
+    }
+  
+    waitForLoginPage() {
+      this.usernameInput.waitForExist();
+      this.passwordInput.waitForExist();
+      this.loginButton.waitForExist();
+      this.errorMessage.waitForExist();
     }
   
     isErrorMessageDisplayed() {
-      return this.errorMessage.isDisplayed()
-    }
-    getErrorMessageText () {
+        return this.errorMessage.isDisplayed();
+      }
+    
+    getErrorMessageText() {
         if (this.isErrorMessageDisplayed()) {
-          return this.errorAlert.getText()
+          return this.errorMessage.getText();
         } else {
-          return ''
+          return '';
         }
+      }
     }
-  }
   
-  export default new LoginPage()
+  export default new LoginPage();
+  
   

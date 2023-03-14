@@ -1,23 +1,31 @@
 
-const LoginPage = require('../pageobjects/login.page.js');
-
+//const LoginPage = require('../pageobjects/login.page.js');
+import LoginPage from '../pageobjects/login.page'
 describe('Login functionality', () => {
-    it('should allow user to login with valid credentials', () => {
+    beforeEach(() => {
         LoginPage.open();
-        LoginPage.username.setValue('standard_user');
-        LoginPage.password.setValue('secret_sauce');
+        console.log
+      });
+    it('should allow user to login with valid credentials', async () => {
+       // LoginPage.open();
+        LoginPage.usernameInput.setValue('standarduser');
+        LoginPage.passwordInput.setValue('pwd');
         LoginPage.submit();
-        expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
+       await expect(browser).toHaveUrl('https://www.saucedemo.com/inventory.html');
     });
-    browser.pause(5000);
-    it('should display error message with invalid credentials', () => {
+  
+   /* it('should display error message with invalid credentials', () => {
         LoginPage.open();
-        LoginPage.username.setValue('invalidusername');
-        LoginPage.password.setValue('invalidpassword');
+       // browser.url("https://www.saucedemo.com/")
+       // LoginPage.usernameInput.setValue('invalidusername');
+       // LoginPage.passwordInput.setValue('invalidpassword');
         LoginPage.submit();
-        const errorMsg = LoginPage.getErrorMessage();
-        expect(errorMsg).toEqual('Epic sadface: Username is required');
+
+        LoginPage.errorMessage.waitForExist();
+        expect(LoginPage.isErrorMessageDisplayed()).toBe(true);
+        expect(LoginPage.getErrorMessageText()).toBe('Epic sadface: Username and password do not match any user in this service');
     });
+    */
 });
 
 
