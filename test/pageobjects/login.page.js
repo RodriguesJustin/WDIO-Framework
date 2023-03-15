@@ -37,7 +37,7 @@ class LoginPage {
     }
   
     isErrorMessageDisplayed() {
-        return this.errorMessage.isDisplayed();
+        return this.errorMessage.toHaveText();
       }
     
     getErrorMessageText() {
