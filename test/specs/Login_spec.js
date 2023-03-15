@@ -13,21 +13,14 @@ describe('Login functionality', () => {
         LoginPage.submit();
        await expect(browser).toHaveUrl('http://uitestingplayground.com/sampleapp');
     });
-  
-    describe('Login functionality', () => {
-        beforeEach(() => {
-            LoginPage.open();
-          });
       
-        it('should display error message with invalid credentials', async () => {
-            const loginstatus = await $('#loginstatus')
-             LoginPage.usernameInput.setValue('invalidusername');
-                LoginPage.passwordInput.setValue('invalidpassword');
-                LoginPage.submit();
-                LoginPage.errorMessage.waitForExist({timeout: 2000});
-                expect(loginstatus).toHaveId('loginstatus');
+    it('should display error message with invalid credentials', async () => {
+        const loginstatus = await $('#loginstatus')
+         LoginPage.usernameInput.setValue('invalidusername');
+         LoginPage.passwordInput.setValue('invalidpassword');
+         LoginPage.submit();
+         LoginPage.errorMessage.waitForExist({timeout: 2000});
+         expect(loginstatus).toHaveId('loginstatus');
           
         });
     });
-
-});
