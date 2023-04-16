@@ -1,19 +1,24 @@
 class FormPage {
     get firstNameInput() {
-        return $('#firstName')
+        return $('#firstName');
     }
     get lastNameInput() {
-        return $('#lastName')
+        return $('#lastName');
     }
     get emailInput() {
-        return $('#userEmail')
+        return $('#userEmail');
     }
-    get genderButton() {
-        return {
-            male: $('#gender-radio-1'),
-            female: $('#gender-radio-2'),
-            other: $('#gender-radio-3')
-        }
+    get genderButtonMale() {
+        return  $('#gender-radio-1');
+          
+    }
+    get genderButtonFemale() {
+        return $('#gender-radio-2');
+    }
+        
+    get genderButtonOther() {
+        return $('#gender-radio-3');
+        
     }
     get mobileInput() {
         return $('#userNumber')
@@ -22,7 +27,7 @@ class FormPage {
         return $('#dateOfBirthInput')
     }
     get subjectsInput() {
-        return $('#')
+        return $('#subjectsContainer')
     }
     get hobbieButtons() {
         return {
@@ -54,19 +59,20 @@ class FormPage {
           browser.url('https://demoqa.com/automation-practice-form');
         }
 
-    fillForm(firstName, lastName, email, gender, mobile, birthday, subjects, hobbies, upload, address, state, city) {
+    fillForm(firstName, lastName, email, mobile, subjects, address, state, city) {
         this.firstNameInput.setValue(firstName);
         this.lastNameInput.setValue(lastName);
         this.emailInput.setValue(email);
-       // this.genderButton.selectByVisibleText(gender);
-        this.mobileInput.setValue(mobile);
-        this.dateOfBirthInput.setValue(birthday);
+        this.selectMobileNumber(mobile);
         this.subjectsInput.setValue(subjects);
-       // this.hobbieButtons.setValue(hobbies);
-       // this.uploadButton.setValue(upload);
         this.currentAddressInput.setValue(address);
         this.stateDropdown.selectByVisibleText(state);
         this.cityDropdown.selectByVisibleText(city);
+        this.selectGenderButton();
+       
+       
+       // this.uploadButton.setValue(upload);
+    
     }
     submitForm() {
         this.submitButton.click()
@@ -81,6 +87,20 @@ class FormPage {
     getThankYouText() {
         return this.thankYouModal.getText();
     }
+    selectDateOfBirth() {
+        this.dateOfBirthInput.click();
+        const dateMonth= $(`.react-datepicker__day--002`);
+        dateMonth.click();
+      }
+    selectGenderButton(genderButton) {
+        const genderradio = this.genderButtonMale
+        genderradio.click();
+    }
+    selectMobileNumber(mobile) {
+        this.mobileInput.setValue(mobile);
+      
+    }
+
 
 }
 
